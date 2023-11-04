@@ -17,4 +17,5 @@ public class PlayerData
     public List<AttackValue> Attacks { get; set; }
     public int Digs { get; set; }
     public List<float> Blocks { get; set; }
+    public int SetsPlayed { get; set; }
 }
