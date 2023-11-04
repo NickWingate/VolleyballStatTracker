@@ -4,8 +4,9 @@ namespace Domain.Entities;
 
 public class PlayerData
 {
-    public PlayerData()
+    public PlayerData(int shirtNo)
     {
+        ShirtNo = shirtNo;
         Serves = new List<int>();
         ServeReceives = new List<int>();
     }
