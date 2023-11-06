@@ -1,26 +1,51 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Enums;
+
+namespace Domain.Entities;
 
 public class SettingStats
 {
-    public int OutsideSets { get; set; }
-    public int MiddleSets { get; set; }
-    public int OppositeFrontSets { get; set; }
-    public int OppositeBackSets { get; set; }
-    public int PipeSets { get; set; }
+    public Dictionary<Position, int> SetQuantities { get; set; } = new();
+    public Dictionary<Position, double> AverageSetQualities { get; set; } = new();
 
-    public float AverageOutsideQuality { get; set; }
-    public float AverageMiddleQuality { get; set; }
-    public float AverageOppositeFrontQuality { get; set; }
-    public float AverageOppositeBackQuality { get; set; }
-    public float AveragePipeQuality { get; set; }
+    public int TotalSets => SetQuantities.Values.Sum();
 
-    public int TotalSets => OutsideSets + MiddleSets + OppositeFrontSets + OppositeBackSets + PipeSets;
+    public void SetSettingQuantity(Position position, int quantity)
+    {
+        SetQuantities[position] = quantity;
+    }
+
+    public void SetSettingQuality(Position position, double quality)
+    {
+        AverageSetQualities[position] = quality;
+    }
+
+    public double GetPositionSetShare(Position position)
+    {
+        return (double)SetQuantities[position] / TotalSets;
+    }
+
+    public Dictionary<Position, double> GetSettingDistribution()
+    {
+        var distribution = new Dictionary<Position, double>();
+        var totalSets = TotalSets;
+        foreach (var kvp in SetQuantities)
+        {
+            distribution[kvp.Key] = (double)kvp.Value / totalSets;
+        }
+
+        return distribution;
+    }
+
+    public int GetSetQuantity(Position position)
+    {
+        return SetQuantities[position];
+    }
+
+    public double GetSetQuality(Position position)
+    {
+        return AverageSetQualities[position];
+    }
     
-    public float OutsideShare => OutsideSets / TotalSets;
-    public float MiddleShare => MiddleSets / TotalSets;
-    public float OppositeShare => (OppositeFrontSets + OppositeBackSets) / TotalSets;
-    public float OppositeFrontShare => OppositeFrontSets / TotalSets;
-    public float OppositeBackShare => OppositeBackSets / TotalSets;
-    public float PipeShare => PipeSets / TotalSets;
+    
     
 }

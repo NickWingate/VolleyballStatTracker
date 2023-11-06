@@ -14,9 +14,9 @@ public class PlayerData
     public int ShirtNo { get; set; }
     public List<int> Serves { get; set; }
     public List<int> ServeReceives { get; set; }
-    public Dictionary<Position, int> Sets { get; set; }
+    public List<Tuple<Position, int>> Sets { get; set; }
     public List<AttackValue> Attacks { get; set; }
     public int Digs { get; set; }
-    public List<float> Blocks { get; set; }
+    public double Blocks { get; set; }
     public int SetsPlayed { get; set; }
 }

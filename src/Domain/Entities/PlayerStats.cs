@@ -8,11 +8,13 @@ public class PlayerStats
     }
 
     public int ShirtNo { get; set; }
-    public float ServeReceive { get; set; }
+    public double ServeReceive { get; set; }
     public SettingStats? SettingStats { get; set; }
-    public float AttackEfficiency { get; set; }
-    public float ServingPercentage { get; set; }
+    public double AttackEfficiency { get; set; }
+    public double ServingPercentage { get; set; }
     public int Aces { get; set; }
-    public float Blocks { get; set; }
+    public int MissedServes { get; set; }
+    public double Blocks { get; set; }
+    public int Digs { get; set; }
     public int SetsPlayed { get; set; }
 }
